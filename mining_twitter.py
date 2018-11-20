@@ -14,7 +14,9 @@ def process_or_store(tweet):
     print(json.dumps(tweet))
 
 class MyListener (StreamListener):
-
+    def on_status(self, status):
+        print(status.text)
+'''
     def on_data(self, data):
         try:
             with open('python.json', 'a') as f:
@@ -26,9 +28,9 @@ class MyListener (StreamListener):
     def on_error (self, status):
         print (status)
         return True
-
+'''
 twitter_stream = Stream(auth, MyListener())
-twitter_stream.filter(track=['#tennis'])
+
 '''
 for status in tweepy.Cursor(api.home_timeline).items(10):
     # Process a single status
